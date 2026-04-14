@@ -80,9 +80,12 @@ public class Principal {
         // 3.12 – Imprimir quantos salários mínimos ganha cada funcionário
         BigDecimal salarioMinimo = new BigDecimal("1212.00");
         System.out.println("\n--- Salários em Salários Mínimos (R$ 1212.00) ---");
+        NumberFormat df = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+        df.setMinimumFractionDigits(2);
+        df.setMaximumFractionDigits(2);
         funcionarios.forEach(f -> {
             BigDecimal qtdSalariosMinimos = f.getSalario().divide(salarioMinimo, 2, RoundingMode.HALF_UP);
-            System.out.println(f.getNome() + ": " + qtdSalariosMinimos);
+            System.out.println(f.getNome() + ": " + df.format(qtdSalariosMinimos));
         });
     }
 
